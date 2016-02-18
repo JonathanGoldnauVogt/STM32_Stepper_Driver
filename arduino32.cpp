@@ -29,6 +29,8 @@ void pinMode(uint8_t pin, uint8_t mode){
     TM_GPIO_Init(pinPort(pin), (uint16_t)gpioPin(pin), mode ? TM_GPIO_Mode_OUT : TM_GPIO_Mode_IN , TM_GPIO_OType_PP, TM_GPIO_PuPd_NOPULL, TM_GPIO_Speed_High);
 }
 void digitalWrite(uint8_t pin, uint8_t state){
+	// Here I am speeding up my specific pins, general case below
+
     if(pin == PORTA+2){
         TM_GPIO_SetPinValue(GPIOA, GPIO_PIN_2, state);
         return;
@@ -45,7 +47,7 @@ void digitalWrite(uint8_t pin, uint8_t state){
         TM_GPIO_SetPinValue(GPIOC, GPIO_PIN_4, state);
         return;
     }
-    
+    // General case here
 	if(state == HIGH) {
         TM_GPIO_SetPinHigh(pinPort(pin), gpioPin(pin));
     }
@@ -55,17 +57,17 @@ void digitalWrite(uint8_t pin, uint8_t state){
     
 }
 int digitalRead(uint8_t){
-    return 1;
+    return 1;//not implemented
 }
     
 int analogRead(uint8_t){
-    return 1;
+    return 1;//not implemented
 }
 void analogReference(uint8_t mode){
-    
+    //not implemented
 }
 void analogWrite(uint8_t, int){
-    
+   //not implemented 
 }
 
 void delayMicroseconds(unsigned int us){
