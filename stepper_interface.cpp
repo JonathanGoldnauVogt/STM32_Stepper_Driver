@@ -1,8 +1,30 @@
+/*
+stepper_interface.cpp
+Use this file to provide c access to c++ functions. Change the file to suit your needs
+Copyright (C) 2016  Jonathan Goldnau-Vogt
+
+This program is free software; you can redistribute it and/or
+modify it under the terms of the GNU General Public License
+as published by the Free Software Foundation; either version 2
+of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
+*/
+
 #include "stepper_interface.h"
 #include "AccelStepper.h"
 #include "defines.h"
+// I had 2 steppers in my application
 AccelStepper stepperR(AccelStepper::DRIVER, STEPPER_RIGHT_STEP_PIN, STEPPER_RIGHT_DIR_PIN);
 AccelStepper stepperL(AccelStepper::DRIVER, STEPPER_LEFT_STEP_PIN, STEPPER_LEFT_DIR_PIN);
+
 void initSteppers(void){
     
     stepperR.setMinPulseWidth(0);
@@ -130,6 +152,7 @@ void setSteppingMode(uint8_t mode){
 
 void stepperProgram(void){
     //setStepperSpeed(F);
+    //call runSpeed often in your code. Use systick_handler, for example.
     runSpeed();
 
 }
